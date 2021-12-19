@@ -19,6 +19,13 @@ import { MatMenuModule } from '@angular/material/menu';
 import { CardComponent } from './card/card.component';
 import { BarChartComponent } from './bar-chart/bar-chart.component';
 import { MiniCardComponent } from './mini-card/mini-card.component';
+import { LoginComponent } from './login/login.component';
+import { CustomMaterialModule } from './core/material.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpInterceptorService } from './shared/http-interceptor.service';
+import { PackingComponent } from './packing/packing.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -27,12 +34,18 @@ import { MiniCardComponent } from './mini-card/mini-card.component';
     DashComponent,
     CardComponent,
     BarChartComponent,
-    MiniCardComponent
+    MiniCardComponent,
+    LoginComponent,
+    PackingComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    CustomMaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
     ChartsModule,
     LayoutModule,
     MatToolbarModule,
@@ -43,8 +56,11 @@ import { MiniCardComponent } from './mini-card/mini-card.component';
     MatGridListModule,
     MatCardModule,
     MatMenuModule,
+    MatPaginatorModule,
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  APIEndpoint: 'http://publisherapi-env.eba-hrxgsqfr.us-east-2.elasticbeanstalk.com'
 };
